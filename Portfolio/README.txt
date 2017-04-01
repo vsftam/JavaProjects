@@ -1,3 +1,7 @@
+A project for subscribing stock tickers and publishing updates to portfolio.
+
+It takes a trade file of portfolio data, and use H2 database to simulate a mock market data provider.
+
 This project uses Ant for building and Ivy for dependency management.
 
 The driver class is portfolio.core.Portfolio

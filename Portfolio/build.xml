@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:ivy="antlib:org.apache.ivy.ant" name="Portfolio" default="makejar" basedir=".">
+  <target name="clean" description="clean up old class files">
+    <delete dir="bin" />
+    <delete dir="build" />
+    <delete file="portfolio.zip" />
+  </target>
+
+  <path id="compile.path">
+    <pathelement location="lib/commons-math3-3.6.1.jar" />
+    <pathelement location="lib/h2-1.4.194.jar" />
+  </path>
+
+  <target name="resolve" description="--> retrieve dependencies with ivy">
+    <ivy:resolve />
+    <ivy:cachepath pathid="compile.path"/>
+  </target>
+
+  <target name="compile" depends="clean,resolve">
+    <mkdir dir="bin" />
+    <mkdir dir="build" />
+    <copy todir="bin">
+      <fileset dir="src/main/resources">
+        <include name="portfolio.csv"/>
+      </fileset>
+    </copy>
+    <javac srcdir="src" destdir="bin" includeantruntime="false" classpathref="compile.path" />
+  </target>
+
+  <target name="makejar" depends="compile">
+    <jar jarfile="build/Portfolio.jar" includes="**/*.class" basedir="bin">
+      <manifest>
+        <attribute name="Main-Class" value="portfolio.core.PortfolioMain" />
+      </manifest>
+      <zipgroupfileset dir="lib" includes="*.jar" />
+      <fileset dir="bin" includes="portfolio.csv" />
+    </jar>
+  </target>
+
+  <target name="run" depends="makejar" >
+    <java fork="true" jar="build/Portfolio.jar" />
+  </target>
+
+  <target name="zip" depends="clean" >
+    <zip destfile="portfolio.zip">
+    <zipfileset dir="src" includes="**/*.java"/>
+    <zipfileset dir="src" includes="**/*.csv"/>
+    <zipfileset dir="." includes="build.xml"/>
+    <zipfileset dir="." includes="ivy.xml"/>
+    <zipfileset dir="." includes="README.txt"/>
+    <zipfileset dir="." includes="portfolio-report.txt"/>
+    </zip>
+  </target>
+</project>

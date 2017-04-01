@@ -1,0 +1,7 @@
+<ivy-module version="2.0">
+    <info organisation="portfolio" module="real-time-portfolio"/>
+    <dependencies>
+        <dependency org="org.apache.commons" name="commons-math3" rev="3.6.1"/>
+        <dependency org="com.h2database" name="h2" rev="1.4.194"/>
+    </dependencies>
+</ivy-module>

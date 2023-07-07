@@ -1,9 +1,8 @@
-package com.vsftam.controller;
+package com.vsftam;
 
-import com.vsftam.persistence.Product;
-import com.vsftam.persistence.ProductRepository;
 import com.vsftam.utils.DiscountDeal;
 import com.vsftam.utils.ElectronicStoreUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,9 +12,9 @@ import java.util.List;
 @RequestMapping("/api/products")
 public class ProductController {
 
-    private ProductRepository productRepository;
+    @Autowired private ProductRepository productRepository;
 
-    @GetMapping("/")
+    @GetMapping
     public Iterable<Product> findAll() {
         return productRepository.findAll();
     }

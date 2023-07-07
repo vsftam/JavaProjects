@@ -1,7 +1,5 @@
-package com.vsftam.controller;
+package com.vsftam;
 
-import com.vsftam.persistence.Basket;
-import com.vsftam.persistence.Product;
 import com.vsftam.utils.DiscountDeal;
 import org.springframework.web.bind.annotation.*;
 

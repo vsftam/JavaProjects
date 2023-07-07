@@ -1,12 +1,11 @@
-package com.vsftam.persistence;
+package com.vsftam;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+
 import java.util.HashMap;
 import java.util.Map;
 
-@Entity
 public class Basket {
 
     @GeneratedValue(strategy = GenerationType.AUTO)

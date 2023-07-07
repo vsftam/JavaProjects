@@ -1,4 +1,4 @@
-package com.vsftam.persistence;
+package com.vsftam;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

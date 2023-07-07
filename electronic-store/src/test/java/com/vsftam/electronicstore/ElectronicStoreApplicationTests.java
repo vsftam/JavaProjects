@@ -1,6 +1,6 @@
 package com.vsftam.electronicstore;
 
-import com.vsftam.persistence.Product;
+import com.vsftam.Product;
 import com.vsftam.utils.ProductType;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -88,7 +88,6 @@ class ElectronicStoreApplicationTests {
 	public void whenUpdateCreatedProduct_thenUpdated() {
 		final Product product = createRandomProduct();
 		final String location = createProductAsUri(product);
-
 		product.setId(Long.parseLong(location.split("api/products/")[1]));
 		product.setName("newProductName");
 		Response response = RestAssured.given()

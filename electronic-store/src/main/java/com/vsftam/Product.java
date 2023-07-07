@@ -1,13 +1,10 @@
-package com.vsftam.persistence;
+package com.vsftam;
 
 import com.vsftam.utils.DiscountDeal;
 import com.vsftam.utils.ProductType;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import jakarta.persistence.*;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 @Entity
 public class Product {
@@ -25,6 +22,7 @@ public class Product {
     private Double price;
 
     @Column(nullable = true)
+    @JdbcTypeCode(SqlTypes.JSON)
     private DiscountDeal discountDeal;
 
     public Product() {

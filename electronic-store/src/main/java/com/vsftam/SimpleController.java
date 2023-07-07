@@ -1,4 +1,4 @@
-package com.vsftam.controller;
+package com.vsftam;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

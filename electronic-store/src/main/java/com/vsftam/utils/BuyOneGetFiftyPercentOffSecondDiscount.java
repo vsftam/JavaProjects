@@ -1,6 +1,6 @@
 package com.vsftam.utils;
 
-import com.vsftam.persistence.Product;
+import com.vsftam.Product;
 
 public class BuyOneGetFiftyPercentOffSecondDiscount implements DiscountDeal {
 

@@ -1,0 +1,25 @@
+apply plugin: 'java'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+task srcZip(type: Zip) {
+    archiveClassifier = 'src'
+    from projectDir
+    include 'src/**/*'
+    include 'build.gradle'
+    include 'README.md'
+    include 'README-Exchange.md'
+}
+
+dependencies {
+    testImplementation 'org.junit.vintage:junit-vintage-engine:5.10.0'
+    testImplementation 'junit:junit:4.13.2'
+}
+
+test {
+    useJUnitPlatform()
+}

@@ -201,18 +201,64 @@ public class FIXParser {
 
     public static void main(String[] args) {
 
-        byte[] input = "8=FIX.4.2\u00019=65\u000135=A\u0001108=30\u000110=031\u0001".getBytes();
+        String input1s = "8=FIX.4.2\u00019=65\u000135=A\u0001108=30\u000110=031\u0001";
+        byte[] input1 = input1s.getBytes();
 
-        byte[] input2 = "8=FIX.4.2\u00019=178\u000135=8\u000149=PHLX\u000156=PERS\u000152=20071123-05:30:00.000\u000111=ATOMNOCCC9990900\u000120=3\u0001150=E\u000139=E\u000155=MSFT\u0001167=CS\u000154=1\u000138=15\u000140=2\u000144=15\u000158=PHLX EQUITY TESTING\u000159=0\u000147=C\u000132=0\u000131=0\u0001151=15\u000114=0\u00016=0\u000110=128\u0001".getBytes();
+        String input2s = "8=FIX.4.2\u00019=65\u000135=A\u0001108=30\u0001109=31\u000110=031\u0001";
+        byte[] input2 = input2s.getBytes();
 
-        // repeating group with dummy usageTag 800, groupCountTag 801 and groupFirstTag 802, other tags as 803, 804
-        byte[] input3 = "8=FIX.4.2\u00019=65\u000135=800\u0001801=3\u0001802=DummyGroup1a\u0001803=Party1a\u0001804=7\u0001802=DummyGroup1b\u0001803=Party1b\u0001804=2000\u0001802=DummyGroup1c\u0001803=Party1a\u0001804=50.5\u0001108=30\u0001109=31\u000110=031\u0001".getBytes();
+        String input3s = "8=FIX.4.2\u00019=178\u000135=8\u000149=PHLX\u000156=PERS\u000152=20071123-05:30:00.000\u000111=ATOMNOCCC9990900\u000120=3\u0001150=E\u000139=E\u000155=MSFT\u0001167=CS\u000154=1\u000138=15\u000140=2\u000144=15\u000158=PHLX EQUITY TESTING\u000159=0\u000147=C\u000132=0\u000131=0\u0001151=15\u000114=0\u00016=0\u000110=128\u0001";
+        byte[] input3 = input3s.getBytes();
+
+        // repeating group with dummy usageTag 800, groupCountTag 801, count of 3 and groupFirstTag 802, other tags as 803, 804
+        String input4s = "8=FIX.4.2\u00019=65\u000135=800\u0001801=3\u0001802=DummyGroup1a\u0001803=Party1a\u0001804=7\u0001802=DummyGroup1b\u0001803=Party1b\u0001804=2000\u0001802=DummyGroup1c\u0001803=Party1a\u0001804=50.5\u0001108=30\u0001109=31\u000110=031\u0001";
+        byte[] input4 = input4s.getBytes();
+
+        // repeating group with dummy usageTag 900, groupCountTag 901, count of 10 and groupFirstTag 902, other tags as 903, 904, 905
+        String input5s = "8=FIX.4.2\u00019=65\u000135=900\u0001901=10\u0001902=DummyGroup2a\u0001903=Party2a\u0001904=7\u0001905=22\u0001902=DummyGroup2b\u0001903=Party2b\u0001904=17\u0001905=21\u0001902=DummyGroup2c\u0001903=Party2c\u0001904=27\u0001905=212\u0001902=DummyGroup2d\u0001903=Party2d\u0001904=37\u0001905=222\u0001902=DummyGroup2e\u0001903=Party2e\u0001904=47\u0001905=2112\u0001902=DummyGroup2f\u0001903=Party2f\u0001904=57\u0001905=2222\u0001902=DummyGroup2g\u0001903=Party2g\u0001904=67\u0001905=22122\u0001902=DummyGroup2h\u0001903=Party2h\u0001904=77\u0001905=22222\u0001902=DummyGroup2i\u0001903=Party2i\u0001904=87\u0001905=212112\u0001902=DummyGroup2j\u0001903=Party2j\u0001904=97\u0001905=222212\u0001108=32\u0001109=999\u000110=037\u0001";
+        byte[] input5 = input5s.getBytes();
 
         FIXParser parser = new FIXParser();
-        FIXMessage message = parser.parse(input);
 
-        int s = message.getTagValueMapSize();
-        System.out.printf("FIX Message with body size %d\n\n%s\n", s, message);
+        long start1 = System.nanoTime();
+        FIXMessage message1 = parser.parse(input1);
+        long end1 = System.nanoTime();
+
+        System.out.printf("Parsing FIX message\n[%s] to \n%s", input1s, message1);
+        System.out.printf("Body size=%d, group size=%d\n", message1.getTagValueMapSize(), message1.getGroupSize());
+        System.out.println("Elapsed Time is nano seconds: "+ (end1-start1) + "\n");
+
+        long start2 = System.nanoTime();
+        FIXMessage message2 = parser.parse(input2);
+        long end2 = System.nanoTime();
+
+        System.out.printf("Parsing FIX message\n[%s] to \n%s", input2s, message2);
+        System.out.printf("Body size=%d, group size=%d\n", message2.getTagValueMapSize(), message2.getGroupSize());
+        System.out.println("Elapsed Time is nano seconds: "+ (end2-start2) + "\n");
+
+        long start3 = System.nanoTime();
+        FIXMessage message3 = parser.parse(input3);
+        long end3 = System.nanoTime();
+
+        System.out.printf("Parsing FIX message\n[%s] to \n%s", input3s, message3);
+        System.out.printf("Body size=%d, group size=%d\n", message3.getTagValueMapSize(), message3.getGroupSize());
+        System.out.println("Elapsed Time is nano seconds: "+ (end3-start3) + "\n");
+
+        long start4 = System.nanoTime();
+        FIXMessage message4 = parser.parse(input4);
+        long end4 = System.nanoTime();
+
+        System.out.printf("Parsing FIX message\n[%s] to \n%s", input4s, message4);
+        System.out.printf("Body size=%d, group size=%d\n", message4.getTagValueMapSize(), message4.getGroupSize());
+        System.out.println("Elapsed Time is nano seconds: "+ (end4-start4) + "\n");
+
+        long start5 = System.nanoTime();
+        FIXMessage message5 = parser.parse(input5);
+        long end5 = System.nanoTime();
+
+        System.out.printf("Parsing FIX message\n[%s] to \n%s", input5s, message5);
+        System.out.printf("Body size=%d, group size=%d\n", message5.getTagValueMapSize(), message5.getGroupSize());
+        System.out.println("Elapsed Time is nano seconds: "+ (end5-start5) + "\n");
     }
 }
 

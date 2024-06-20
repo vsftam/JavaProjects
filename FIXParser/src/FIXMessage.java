@@ -65,6 +65,12 @@ public class FIXMessage {
         return tagValueMap.size();
     }
 
+    public int getGroupSize() {
+        List<Map<Integer, String>> ls = new ArrayList<>();
+        groups.values().forEach(ls::addAll);
+        return ls.size();
+    }
+
     public int getCheckSum() {
         return checkSum;
     }
@@ -99,7 +105,7 @@ public class FIXMessage {
     }
     public String toString() {
         String headerStr = "Header: "+ header.toString();
-        String checksumStr = String.format("\nCheckSum: %d", checkSum);
+        String checksumStr = String.format("\nCheckSum: %d\n", checkSum);
         String bodyStr = bodyString() == "" ? "" : "\nBody: " + bodyString();
         String groupStr = groupString() == "" ? "" : "\nGroups: " + groupString();
         return headerStr + bodyStr +  groupStr + checksumStr;

@@ -9,7 +9,7 @@ public class FIXUtils {
         FIXGroupType dummyGroupType1 = new FIXGroupType("dummyGroup1", 801, 802, groupTags);
         groupTypes.put("800", dummyGroupType1);
 
-        groupTags = new HashSet<>(Arrays.asList(903, 904));
+        groupTags = new HashSet<>(Arrays.asList(903, 904, 905));
         FIXGroupType dummyGroupType2 = new FIXGroupType("dummyGroup1", 901, 902, groupTags);
         groupTypes.put("900", dummyGroupType2);
     }

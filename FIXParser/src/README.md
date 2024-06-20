@@ -18,7 +18,7 @@ CheckSum: 31
 ```
 
 
-## Assumptions
+## Implemented features
 1. Validates all tags are non-negative integers
 1. Validates all fields are of format [int]=[string]
 1. Validates value of bodyLength is a positive integer
@@ -35,10 +35,18 @@ CheckSum: 31
 1. Validates groupCountTag is the first tag in the repeating group
 1. Validates value of groupCountTag is a positive integer
 1. Validates firstEntryTag is the first tag after group count tag
-1. Does not support multiple or nested repeating groups for simplicity
-1. Does not validate body length of the FIX message
-1. Does not validate the checksum of the FIX message
-1. Does not do any validation for the body content. All fields of the body are stored in tagValueMap of type Map<Integer,String>.
+
+## Observation from different runs
+1. The first run takes a relative long time >50MM ns, despite the short message length. This is likely due to one time initialization of the classes.
+2. The parsing time is roughly proportional to message size, but at a slow rate.  ~40 items takes ~4MM ns, 10-20 items ~1MM ns, and <10 items ~0.5MM.
+
+## Future improvements
+1. Support multiple or nested repeating groups. They are omitted in current version for simplicity
+1. Validate body length of the FIX message
+1. Validate the checksum of the FIX message
+1. Add some kind of validation for the body content. Currently, all fields of the body are stored in a map of type Map<Integer,String>.
+1. Add unit tests for the implemented features
+1. Add more proper benchmark tests on the parser performance
 
 
 

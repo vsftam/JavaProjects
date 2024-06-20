@@ -38,15 +38,17 @@ CheckSum: 31
 
 ## Observation from different runs
 1. The first run takes a relative long time >50MM ns, despite the short message length. This is likely due to one time initialization of the classes.
-2. The parsing time is roughly proportional to message size, but at a slow rate.  ~40 items takes ~4MM ns, 10-20 items ~1MM ns, and <10 items ~0.5MM.
+1. The parsing time is roughly proportional to message size, but it grows at a slow rate.  ~40 items takes ~4MM ns, 10-20 items ~1MM ns, and <10 items ~0.5MM.
 
 ## Future improvements
-1. Support multiple or nested repeating groups. They are omitted in current version for simplicity
+1. Support multiple and nested repeating groups. They are omitted in current version for simplicity
 1. Validate body length of the FIX message
 1. Validate the checksum of the FIX message
-1. Add some kind of validation for the body content. Currently, all fields of the body are stored in a map of type Map<Integer,String>.
+1. Add reference data for the tags and message types
+1. Add validations for the body content. Currently, all fields of the body are stored in a map of type Map<Integer,String>.
 1. Add unit tests for the implemented features
 1. Add more proper benchmark tests on the parser performance
+1. Refactor the code to be more modular and less monolithic
 
 
 

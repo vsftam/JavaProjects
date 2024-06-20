@@ -85,7 +85,7 @@ public class FIXMessage {
                             entry.getValue().stream().map( listEntry ->
                                     listEntry.entrySet().stream().map(
                                             mapEntry ->String.format("\t%d=%s", mapEntry.getKey(), mapEntry.getValue())
-                                    ).reduce( "", (a, b) -> a+";"+b)
+                                    ).reduce( "", (a, b) -> a+b)
                             ).reduce( "", (a, b) -> a+"\n"+b)
             ).reduce( "", (a, b) -> a+"\n"+b);
         };
@@ -95,7 +95,7 @@ public class FIXMessage {
     public String bodyString() {
         return tagValueMap.entrySet().stream().map(
                 entry -> String.format("%d=%s", entry.getKey(), entry.getValue()))
-                        .reduce( "", (a, b) -> a+";"+b);
+                        .reduce( "", (a, b) -> a+"\t"+b);
     }
     public String toString() {
         String headerStr = "Header: "+ header.toString();

@@ -206,10 +206,10 @@ public class FIXParser {
         byte[] input2 = "8=FIX.4.2\u00019=178\u000135=8\u000149=PHLX\u000156=PERS\u000152=20071123-05:30:00.000\u000111=ATOMNOCCC9990900\u000120=3\u0001150=E\u000139=E\u000155=MSFT\u0001167=CS\u000154=1\u000138=15\u000140=2\u000144=15\u000158=PHLX EQUITY TESTING\u000159=0\u000147=C\u000132=0\u000131=0\u0001151=15\u000114=0\u00016=0\u000110=128\u0001".getBytes();
 
         // repeating group with dummy usageTag 800, groupCountTag 801 and groupFirstTag 802, other tags as 803, 804
-        byte[] input3 = "8=FIX.4.2\u00019=65\u000135=800\u0001801=3\u0001802=DummyGroup1a\u0001803=Party1a\u0001804=7\u0001802=DummyGroup1b\u0001803=Party1b\u0001804=2000\u0001802=DummyGroup1c\u0001803=Party1a\u0001804=50.5\u0001108=30\u000110=031\u0001".getBytes();
+        byte[] input3 = "8=FIX.4.2\u00019=65\u000135=800\u0001801=3\u0001802=DummyGroup1a\u0001803=Party1a\u0001804=7\u0001802=DummyGroup1b\u0001803=Party1b\u0001804=2000\u0001802=DummyGroup1c\u0001803=Party1a\u0001804=50.5\u0001108=30\u0001109=31\u000110=031\u0001".getBytes();
 
         FIXParser parser = new FIXParser();
-        FIXMessage message = parser.parse(input3);
+        FIXMessage message = parser.parse(input);
 
         int s = message.getTagValueMapSize();
         System.out.printf("FIX Message with body size %d\n\n%s\n", s, message);
